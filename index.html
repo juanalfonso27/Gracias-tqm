@@ -251,6 +251,25 @@
             100% { opacity: 0; transform: scale(0) rotate(360deg); }
         }
 
+        .floating-balloon {
+            position: fixed;
+            font-size: 40px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: balloon-float-up 4s ease-out forwards;
+        }
+
+        @keyframes balloon-float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) rotate(360deg) scale(0.3);
+            }
+        }
+
         .cake {
             font-size: 4em;
             margin: 20px 0;
@@ -326,13 +345,14 @@
             }
         }
 
-        // Crear sparkles al hacer clic
+        // Crear sparkles y globos al hacer clic
         function createSparkles(event) {
             const sparklesContainer = document.getElementById('sparkles');
             const rect = event.target.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
 
+            // Crear sparkles
             for (let i = 0; i < 12; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
@@ -345,6 +365,31 @@
                 setTimeout(() => {
                     sparkle.remove();
                 }, 2000);
+            }
+
+            // Crear globos flotantes
+            const balloonEmojis = ['🎈', '🎆', '🎊', '🎉', '💖', '🌟', '✨', '🎁', '🍰', '🥳'];
+            
+            for (let i = 0; i < 25; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'floating-balloon';
+                balloon.innerHTML = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+                
+                // Posición aleatoria en la pantalla
+                balloon.style.left = Math.random() * window.innerWidth + 'px';
+                balloon.style.top = window.innerHeight + 'px';
+                
+                // Retraso aleatorio para que no salgan todos a la vez
+                balloon.style.animationDelay = Math.random() * 1 + 's';
+                
+                // Duración aleatoria
+                balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                document.body.appendChild(balloon);
+
+                setTimeout(() => {
+                    balloon.remove();
+                }, 5000);
             }
         }
 
