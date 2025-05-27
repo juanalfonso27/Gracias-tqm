@@ -228,7 +228,7 @@
 
         .visitor-counter {
             position: absolute;
-            top: -50px;
+            top: 55%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.9);
@@ -358,7 +358,7 @@
     
     <!-- Tu archivo de audio - cambia "tu_audio.mp3" por el nombre de tu archivo -->
     <audio id="backgroundMusic" loop preload="auto" style="display: none;">
-        <source src="audio.mp3" type="audio/mpeg">
+        <source src="audio.mpeg" type="audio/mpeg">
     
     </audio>
 
@@ -371,7 +371,7 @@
         </div>
         
         <div class="photo-container">
-            <img src="foto.jpg" 
+            <img src="foto.jpeg" 
                  alt="Mi foto de cumpleaños" 
                  class="profile-photo" 
                  onclick="createConfetti()">
@@ -405,6 +405,12 @@
     </div>
 
     <script>
+        
+  setTimeout(() => {
+    const counter = document.querySelector('.visitor-counter');
+    if (counter) counter.style.display = 'none';
+  }, 3000); // 1000ms = 1 segundo
+
       const messages = [
     "Los quiero mucho a todos",
     "Son lo máximo de verdad",
