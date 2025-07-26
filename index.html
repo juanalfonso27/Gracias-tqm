@@ -457,7 +457,7 @@ function initAudio() {
 
         audioElement.addEventListener('canplay', () => {
             console.log('Audio listo para reproducir');
-            showAudioStatus('Audio cargado ✅', 2000);
+            showAudioStatus(' ', 2000);
         });
 
         audioElement.addEventListener('error', (e) => {
@@ -492,7 +492,7 @@ function toggleMusic() {
             musicPlaying = true;
             button.classList.add('playing');
             button.innerHTML = '🎶';
-            showAudioStatus('¡Música activada! 🎵', 2000);
+            showAudioStatus(' ', 2000);
         }).catch(error => {
             console.error('Error reproduciendo audio:', error);
             showAudioStatus('Error: No se pudo reproducir el audio', 4000);
@@ -697,7 +697,7 @@ function showAudioStatus(message, duration = 2000) {
 
             // Mostrar mensaje inicial sobre el audio
             setTimeout(() => {
-                showAudioStatus('Haz clic en 🎵 para activar tu música', 4000);
+                showAudioStatus(' ', 4000);
             }, 2000);
         });
 
